@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="title" placeholder="product title">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text-area" name="description" placeholder="Description">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="datetime" name="date_listed" placeholder="yyyy-mm-dd">
+        </div>
+
+        <input type="file" accept="image/*" name="image"><br>
+
+        <br><input class="btn btn-primary" type="submit" value="upload">
+    
+    </form>
+</body>
+</html>
