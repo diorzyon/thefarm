@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+# Create your views here.
 from .models import Product
 
 def index(request):
@@ -12,6 +14,15 @@ def upload(request):
         products = Product.objects.create(title=request.POST['title'], description=request.POST['description'], image=image, date=date)
         products.save()
         
-        return render(request, "api/index.html")
+        return render(request, "api/index.html", {
+                "message": "Upload Successful."
+            })
     else:
         return render(request, 'api/index.html')
+
+def retrieve(request):
+    if request.method == 'POST':
+        product = Product.objects.get(title=request.POST['title'])
+        return render(request, "api/retrieve.html",{"product": product })
+    else:
+        return render(request, 'api/retrieve.html')    

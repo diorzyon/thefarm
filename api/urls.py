@@ -5,5 +5,9 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("upload", views.upload, name="upload"),     
+    path("upload", views.upload, name="upload"),
+    path('retrieve', views.retrieve, name='retrieve')   
 ]
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
